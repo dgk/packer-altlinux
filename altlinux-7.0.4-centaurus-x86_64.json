@@ -1,0 +1,78 @@
+{
+  "builders": [
+    {
+      "accelerator": "kvm",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort}}/ks7.cfg<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_interface": "scsi",
+      "disk_size": 5000,
+      "format": "raw",
+      "headless": true,
+      "http_directory": "http",
+      "iso_checksum": "6dd45bbd8bf0c313e135b71830916d5d",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://ftp.altlinux.org/pub/distributions/ALTLinux/p7/images/centaurus/altlinux-7.0.4-centaurus-x86_64-ru-install-dvd5.iso",
+      "net_device": "virtio-net",
+      "output_directory": "output/altlinux-7.0.4-centaurus-x86_64-qemu/",
+      "qemuargs": [
+        [
+          "-m",
+          "1024"
+        ],
+        [
+          "-device",
+          "virtio-scsi-pci,id=scsi0"
+        ],
+        [
+          "-drive",
+          "if=none,cache=unsafe,id=drive0,discard=unmap,file=output/altlinux-7.0.4-centaurus-x86_64-qemu/altlinux-7.0.4-centaurus-x86_64.raw"
+        ],
+        [
+          "-device",
+          "scsi-hd,bus=scsi0.0,drive=drive0"
+        ],
+        [
+          "-device",
+          "virtio-net,netdev=user.0"
+        ]
+      ],
+      "shutdown_command": "shutdown -h now",
+      "ssh_password": "packer",
+      "ssh_username": "root",
+      "ssh_wait_timeout": "10000s",
+      "type": "qemu",
+      "vm_name": "altlinux-7.0.4-centaurus-x86_64"
+    }
+  ],
+  "provisioners": [
+    {
+      "scripts": [
+        "scripts/base.sh",
+        "scripts/reboot.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "scripts": [
+        "scripts/cleanup.sh"
+      ],
+      "pause_before": "30s",
+      "type": "shell"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "strip",
+        "output": "output/altlinux-7.0.4-centaurus-x86_64-strip/"
+      },
+      {
+        "type": "compress",
+        "format": "gzip",
+        "output": "output/altlinux-7.0.4-centaurus-x86_64-compress/"
+      }
+    ]
+  ]
+}

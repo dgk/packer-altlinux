@@ -9,4 +9,3 @@ sudo apt-get install cloud-init
 
 sudo fstrim -v /
 
-

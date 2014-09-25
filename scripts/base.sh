@@ -49,3 +49,4 @@ echo $(openssl ciphers|tr ':' '\n'|grep GOST)
 sudo chkconfig ntpd on
 sudo apt-get install -y tzdata
 sudo rm -f /home/packer/su /home/packer/root
+
