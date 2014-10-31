@@ -15,6 +15,7 @@
       "boot_wait": "5s",
       "disk_interface": "scsi",
       "disk_size": 5000,
+      "disk_cache": "unsafe",
       "format": "raw",
       "headless": true,
       "http_directory": "http",
@@ -23,6 +24,7 @@
       "iso_url": "http://ftp.altlinux.ru/pub/distributions/ALTLinux/c6/get/altlinux-6.0.2-20130702-spt-x86_64-ru-install-dvd5.iso",
       "net_device": "virtio-net",
       "output_directory": "output/altlinux-7.0-x86_64-qemu/",
+      "machine_type": "pc-i440fx-1.7",
       "qemuargs": [
         [
           "-m",
@@ -43,10 +45,6 @@
         [
           "-device",
           "virtio-net,netdev=user.0"
-        ],
-        [
-          "-machine",
-          "type=pc,accel=kvm"
         ]
       ],
       "shutdown_command": "sudo shutdown -h now",
