@@ -75,7 +75,7 @@
     [
       {
         "type": "compress",
-        "format": "pgzip",
+        "format": "bgzf",
         "output": "output/altlinux-7.0-x86_64-compress/"
       }
     ]
