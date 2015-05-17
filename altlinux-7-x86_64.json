@@ -36,7 +36,7 @@
         ],
         [
           "-drive",
-          "if=none,cache=unsafe,id=drive0,discard=unmap,file=output/altlinux-7-x86_64-qemu/altlinux-7-x86_64.raw"
+          "if=none,cache=unsafe,id=drive0,discard=unmap,file=output/altlinux-7-x86_64-qemu/altlinux-7-x86_64"
         ],
         [
           "-device",
